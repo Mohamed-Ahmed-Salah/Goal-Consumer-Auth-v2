@@ -21,22 +21,25 @@ public class AuthController {
 
 
     @PostMapping("/login")
+    @CrossOrigin()
     public ResponseEntity<?> login(@Valid @RequestBody LoginRequest loginRequest) throws ParseException {
         return ResponseEntity.ok().body(authServiceImp.login(loginRequest));
     }
 
     @PostMapping("/registration")
+    @CrossOrigin()
     public ResponseEntity<?> registration(@Valid @RequestBody RegistrationRequest registrationRequest) {
         return ResponseEntity.ok().body(authServiceImp.registration(registrationRequest));
     }
 
-    @PostMapping("/registration-admin")
+    @PostMapping("/registration-admin")@CrossOrigin()
     public ResponseEntity<?> registrationForAdmin(@Valid @RequestBody RegistrationRequest registrationRequest) {
         System.out.println("IN CONTROLLLERRRR");
         return ResponseEntity.ok().body(authServiceImp.registration(registrationRequest));
     }
 
     @PutMapping("/change-password/{id}")
+    @CrossOrigin()
     public ResponseEntity<?> changePassword(@PathVariable Long id, @Valid @RequestBody ChangePasswordRequest passwordRequest) {
         return ResponseEntity.ok().body(authServiceImp.changePassword(id, passwordRequest));
     }
@@ -48,14 +51,14 @@ public class AuthController {
 
     }
 
-    @PostMapping("/verify-otp")
+    @PostMapping("/verify-otp")@CrossOrigin()
     public ResponseEntity<?> verifyOtp(@Valid @RequestBody OtpVerifyRequest otpVerifyRequest) throws ParseException {
 
         return ResponseEntity.ok().body(authServiceImp.verifyOtp(otpVerifyRequest));
 
     }
 
-    @PostMapping("/forget-password")
+    @PostMapping("/forget-password")@CrossOrigin()
     public ResponseEntity<?> forgetPassword(@Valid @RequestBody ForgetPasswordRequest forgetPasswordRequest) {
         return ResponseEntity.ok().body(authServiceImp.forgetPassword(forgetPasswordRequest));
     }
