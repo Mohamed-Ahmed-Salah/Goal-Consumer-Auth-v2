@@ -15,7 +15,7 @@ import java.text.ParseException;
 @RequiredArgsConstructor
 @RequestMapping("/auth")
 @Slf4j
-@CrossOrigin
+@CrossOrigin()
 public class AuthController {
     private final AuthServiceImp authServiceImp;
 
