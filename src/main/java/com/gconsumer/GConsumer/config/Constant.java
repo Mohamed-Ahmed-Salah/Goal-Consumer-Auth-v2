@@ -24,6 +24,10 @@ public class Constant {
             public static final String msg = "Username or password is incorrect";
         }
 
+        public static class UserIsLocked {
+            public static final int code = -105;
+            public static final String msg = "User is Locked";
+        }
 
         public static class UserOrOtpNotFound {
             public static final int code = -101;

@@ -63,7 +63,11 @@ public class AuthServiceImp implements AuthService {
         System.out.println(userCredentialData.isPresent());
         try {
             if (userCredentialData.isPresent()) {
-                System.out.println("HEREEEEEEEEEEEEEEEEEEEEEEEee");
+
+                System.out.println("HEREEEEEEEEEEEEEEEEEEEEEEEee"+userCredentialData.get().isLock());
+//                if(userCredentialData.get().isLock()){
+//                                return new GeneralResponse(Constant.ResponseCode.UserIsLocked.code, Constant.ResponseCode.UserIsLocked.msg, null);
+//                }
                 if (userCredentialData.get().isOtp()) {
                     loginResponse = otpLogin(loginRequest, userCredentialData);
                 } else {
@@ -90,7 +94,6 @@ public class AuthServiceImp implements AuthService {
             return new GeneralResponse(Constant.ResponseCode.Validation.code, Constant.ResponseCode.Validation.msg, null);
         }
 
-        System.out.println("user doesnt exists!!!!!!");
 
 
 //        System.out.println("ELSE");
@@ -118,19 +121,10 @@ public class AuthServiceImp implements AuthService {
 
 
         try {
-
-
             ModelMapper modelMapper = new ModelMapper();
 
-
             UserCredential userCredential = modelMapper.map(registrationRequest, UserCredential.class);
-            System.out.println("modelMappermodelMappermodelMappermodelMappermodelMapper");
-
             userCredential.setOtp(false).setEnable(true).setLock(true);
-//
-//        UserPreference userPreference = modelMapper.map(registrationRequest,UserPreference.class);
-//        userPreference.setUserCredential(userCredentialRepo.save(userCredential));
-//        userPreferenceRepo.save(userPreference);
             userCredential.setStatus(USER_STATUS.PENDING.name());
 
 
@@ -384,8 +378,12 @@ public class AuthServiceImp implements AuthService {
 
             String access_token = jwtUtils.getAccessToken(loginRequest, "", roles);
             String refresh_token = jwtUtils.getRefreshToken(loginRequest, "", roles);
-            UserDataResponse userDataResponse = new UserDataResponse();
-            userMapper.mapFromUserToLogin(userCredentialData.get(), userDataResponse);
+            UserDataResponse userDataResponse =  userMapper.mapFromUserToLoginResponse(userCredentialData.get());
+
+            System.out.println("USER CRED: "+userCredentialData.get());
+
+            System.out.println("HERE AFTER MAP: "+userDataResponse);
+
             data.put("user_data", userDataResponse);
             loginResponse.setAccessToken(access_token).setRefreshToken(refresh_token).setData(data);
 

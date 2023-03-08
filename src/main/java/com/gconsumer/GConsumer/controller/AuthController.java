@@ -32,7 +32,8 @@ public class AuthController {
         return ResponseEntity.ok().body(authServiceImp.registration(registrationRequest));
     }
 
-    @PostMapping("/registration-admin")@CrossOrigin()
+    @PostMapping("/registration-admin")
+    @CrossOrigin()
     public ResponseEntity<?> registrationForAdmin(@Valid @RequestBody RegistrationRequest registrationRequest) {
         System.out.println("IN CONTROLLLERRRR");
         return ResponseEntity.ok().body(authServiceImp.registration(registrationRequest));
@@ -46,19 +47,19 @@ public class AuthController {
 
     @PutMapping("/reset-password/{id}")
     public ResponseEntity<?> resetPassword(@PathVariable Long id, @Valid @RequestBody ResetPasswordRequest resetPasswordRequest) {
-
         return ResponseEntity.ok().body(authServiceImp.resetPassword(id, resetPasswordRequest));
-
     }
 
-    @PostMapping("/verify-otp")@CrossOrigin()
+    @PostMapping("/verify-otp")
+    @CrossOrigin()
     public ResponseEntity<?> verifyOtp(@Valid @RequestBody OtpVerifyRequest otpVerifyRequest) throws ParseException {
 
         return ResponseEntity.ok().body(authServiceImp.verifyOtp(otpVerifyRequest));
 
     }
 
-    @PostMapping("/forget-password")@CrossOrigin()
+    @PostMapping("/forget-password")
+    @CrossOrigin()
     public ResponseEntity<?> forgetPassword(@Valid @RequestBody ForgetPasswordRequest forgetPasswordRequest) {
         return ResponseEntity.ok().body(authServiceImp.forgetPassword(forgetPasswordRequest));
     }

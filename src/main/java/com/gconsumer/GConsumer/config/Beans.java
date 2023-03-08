@@ -30,17 +30,7 @@ public class Beans {
 
     @Bean
     public UserMapper userMapper() {
-        return new UserMapper() {
-            @Override
-            public void mapFromRegisterToUser(RegistrationRequest registrationRequest, UserCredential userCredential) {
-
-            }
-
-            @Override
-            public void mapFromUserToLogin(UserCredential userCredential, UserDataResponse userDataResponse) {
-
-            }
-        };
+        return new UserMapper();
     }
 
 

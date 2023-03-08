@@ -39,23 +39,6 @@ public class UserServiceImp implements UserService {
                 null);
     }
 
-//    @Transactional
-//    @Override
-//    public GeneralResponse update(Long id, UserUpdateRequest userUpdateRequest) {
-//
-//        Optional<UserCredential> user = userCredentialRepo.findById(id);
-//        if (user.isPresent()) {
-//            UserCredential userCredential = user.get();
-//            userMapper.updateUserFromDto(userUpdateRequest, userCredential);
-//            userCredentialRepo.save(userCredential);
-//            return new GeneralResponse(Constant.ResponseCode.Success.code, Constant.ResponseCode.Success.msg,
-//                    userUpdateRequest);
-//        }
-//
-//        return new GeneralResponse(Constant.ResponseCode.UserNotFound.code, Constant.ResponseCode.UserNotFound.msg,
-//                null);
-//    }
-
     @Override
     public GeneralResponse getUser(String username) {
         return new GeneralResponse(Constant.ResponseCode.Success.code, Constant.ResponseCode.Success.msg,
@@ -80,11 +63,11 @@ public class UserServiceImp implements UserService {
 
     public GeneralResponse search(SearchRequest request){
         List<UserDataResponse> userDataResponses = new ArrayList<>();
-        UserDataResponse userDataResponse = new UserDataResponse();
+//        UserDataResponse userDataResponse = new UserDataResponse();
         SearchSpecification<UserCredential> specification = new SearchSpecification<>(request);
 //        Pageable pageable = SearchSpecification.getPageable(request.getPage(), request.getSize());
         userCredentialRepo.findAll(specification).forEach(userCredential -> {
-            userMapper.mapFromUserToLogin(userCredential, userDataResponse);
+           UserDataResponse userDataResponse= userMapper.mapFromUserToLoginResponse(userCredential);
             userDataResponses.add(userDataResponse);
         });
         return new GeneralResponse(Constant.ResponseCode.Success.code,Constant.ResponseCode.Success.msg,userDataResponses);

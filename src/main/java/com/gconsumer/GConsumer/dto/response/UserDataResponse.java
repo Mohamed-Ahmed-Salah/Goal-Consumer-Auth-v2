@@ -16,23 +16,23 @@ public class UserDataResponse {
 
     private Long id;
 
-    private String createdBy;
+//    private String createdBy;
+//
+//    private String modifiedBy;
+//
+//    private LocalDateTime createdOn;
+//
+//    private LocalDateTime updatedOn;
+//
+//    private int version;
 
-    private String modifiedBy;
-
-    private LocalDateTime createdOn;
-
-    private LocalDateTime updatedOn;
-
-    private int version;
-
-    private String username;
+//    private String username;
 
     private String email;
 
-    private String country;
+//    private String country;
 
-    private String city;
+//    private String city;
 
     private String fullName;
 
@@ -44,9 +44,9 @@ public class UserDataResponse {
 
     private boolean lock;
 
-    private boolean otp;
+//    private boolean otp;
 
     private String role;
 
-    private String notes;
+//    private String notes;
 }
